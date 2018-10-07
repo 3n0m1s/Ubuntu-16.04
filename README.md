@@ -148,7 +148,7 @@ This setting will persist until the next reboot. We can set this value automatic
         sudo nano /etc/sysctl.conf
         At the bottom, you can add:
 
-        /etc/sysctl.conf
+                            /etc/sysctl.conf
         vm.swappiness=10
 Save and close the file when you are finished.
 
@@ -157,21 +157,21 @@ Another related value that you might want to modify is the vfs_cache_pressure. T
 
 Basically, this is access data about the filesystem. This is generally very costly to look up and very frequently requested, so it's an excellent thing for your system to cache. You can see the current value by querying the proc filesystem again:
 
-cat /proc/sys/vm/vfs_cache_pressure
-Output
-100
+        cat /proc/sys/vm/vfs_cache_pressure
+        Output
+        100
 As it is currently configured, our system removes inode information from the cache too quickly. We can set this to a more conservative setting like 50 by typing:
 
-sudo sysctl vm.vfs_cache_pressure=50
-Output
-vm.vfs_cache_pressure = 50
+        sudo sysctl vm.vfs_cache_pressure=50
+        Output
+        vm.vfs_cache_pressure = 50
 Again, this is only valid for our current session. We can change that by adding it to our configuration file like we did with our swappiness setting:
 
-sudo nano /etc/sysctl.conf
+        sudo nano /etc/sysctl.conf
 At the bottom, add the line that specifies your new value:
 
-/etc/sysctl.conf
-vm.vfs_cache_pressure=50
+                        /etc/sysctl.conf
+        vm.vfs_cache_pressure=50
 Save and close the file when you are finished.
 
 Conclusion
