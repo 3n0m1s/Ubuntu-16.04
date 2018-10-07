@@ -61,12 +61,12 @@ The best way of creating a swap file is with the fallocate program. This command
 
 Since the server in our example has 512MB of RAM, we will create a 1 Gigabyte file in this guide. Adjust this to meet the needs of your own server:
 
-sudo fallocate -l 1G /swapfile
+        sudo fallocate -l 1G /swapfile
 
 We can verify that the correct amount of space was reserved by typing:
 
-ls -lh /swapfile
--rw-r--r-- 1 root root 1.0G Apr 25 11:14 /swapfile
+        ls -lh /swapfile
+        -rw-r--r-- 1 root root 1.0G Apr 25 11:14 /swapfile
 Our file has been created with the correct amount of space set aside.
 
 Enabling the Swap File
@@ -76,38 +76,38 @@ First, we need to lock down the permissions of the file so that only the users w
 
 Make the file only accessible to root by typing:
 
-sudo chmod 600 /swapfile
+        sudo chmod 600 /swapfile
 
 Verify the permissions change by typing:
 
-ls -lh /swapfile
+        ls -lh /swapfile
 
-Output
--rw------- 1 root root 1.0G Apr 25 11:14 /swapfile
+        Output
+        -rw------- 1 root root 1.0G Apr 25 11:14 /swapfile
 As you can see, only the root user has the read and write flags enabled.
 
 We can now mark the file as swap space by typing:
 
-sudo mkswap /swapfile
-Output
-Setting up swapspace version 1, size = 1024 MiB (1073737728 bytes)
-no label, UUID=6e965805-2ab9-450f-aed6-577e74089dbf
+        sudo mkswap /swapfile
+        Output
+        Setting up swapspace version 1, size = 1024 MiB (1073737728 bytes)
+        no label, UUID=6e965805-2ab9-450f-aed6-577e74089dbf
 After marking the file, we can enable the swap file, allowing our system to start utilizing it:
 
-sudo swapon /swapfile
+        sudo swapon /swapfile
 We can verify that the swap is available by typing:
 
-sudo swapon --show
-Output
-NAME      TYPE  SIZE USED PRIO
-/swapfile file 1024M   0B   -1
+        sudo swapon --show
+        Output
+        NAME      TYPE  SIZE USED PRIO
+        /swapfile file 1024M   0B   -1
 We can check the output of the free utility again to corroborate our findings:
 
-free -h
-Output
+        free -h
+        Output
               total        used        free      shared  buff/cache   available
-Mem:           488M         37M         96M        652K        354M        425M
-Swap:          1.0G          0B        1.0G
+        Mem:           488M         37M         96M        652K        354M        425M
+        Swap:          1.0G          0B        1.0G
 Our swap has been set up successfully and our operating system will begin to use it as necessary.
 
 Make the Swap File Permanent
@@ -115,10 +115,10 @@ Our recent changes have enabled the swap file for the current session. However, 
 
 Back up the /etc/fstab file in case anything goes wrong:
 
-sudo cp /etc/fstab /etc/fstab.bak
+        sudo cp /etc/fstab /etc/fstab.bak
 You can add the swap file information to the end of your /etc/fstab file by typing:
 
-echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+        echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 Tweak your Swap Settings
 There are a few options that you can configure that will have an impact on your system's performance when dealing with swap.
 
@@ -131,25 +131,25 @@ Values that are closer to 100 will try to put more data into swap in an effort t
 
 We can see the current swappiness value by typing:
 
-cat /proc/sys/vm/swappiness
-Output
-60
+        cat /proc/sys/vm/swappiness
+        Output
+        60
 For a Desktop, a swappiness setting of 60 is not a bad value. For a server, you might want to move it closer to 0.
 
 We can set the swappiness to a different value by using the sysctl command.
 
 For instance, to set the swappiness to 10, we could type:
 
-sudo sysctl vm.swappiness=10
-Output
-vm.swappiness = 10
+        sudo sysctl vm.swappiness=10
+        Output
+        vm.swappiness = 10
 This setting will persist until the next reboot. We can set this value automatically at restart by adding the line to our /etc/sysctl.conf file:
 
-sudo nano /etc/sysctl.conf
-At the bottom, you can add:
+        sudo nano /etc/sysctl.conf
+        At the bottom, you can add:
 
-/etc/sysctl.conf
-vm.swappiness=10
+        /etc/sysctl.conf
+        vm.swappiness=10
 Save and close the file when you are finished.
 
 Adjusting the Cache Pressure Setting
