@@ -3,6 +3,8 @@ Enabling free memory to use removing out of memory exeption
 
 How To Add Swap Space on Ubuntu 16.04
 
+https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04
+
 Introduction
 One of the easiest way of increasing the responsiveness of your server and guarding against out-of-memory errors in applications is to add some swap space. In this guide, we will cover how to add a swap file to an Ubuntu 16.04 server.
 
@@ -60,6 +62,7 @@ The best way of creating a swap file is with the fallocate program. This command
 Since the server in our example has 512MB of RAM, we will create a 1 Gigabyte file in this guide. Adjust this to meet the needs of your own server:
 
 sudo fallocate -l 1G /swapfile
+
 We can verify that the correct amount of space was reserved by typing:
 
 ls -lh /swapfile
@@ -74,9 +77,11 @@ First, we need to lock down the permissions of the file so that only the users w
 Make the file only accessible to root by typing:
 
 sudo chmod 600 /swapfile
+
 Verify the permissions change by typing:
 
 ls -lh /swapfile
+
 Output
 -rw------- 1 root root 1.0G Apr 25 11:14 /swapfile
 As you can see, only the root user has the read and write flags enabled.
