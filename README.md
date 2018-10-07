@@ -23,12 +23,12 @@ Before we begin, we can check if the system already has some swap space availabl
 
 We can see if the system has any configured swap by typing:
 
-sudo swapon --show
+    sudo swapon --show
 If you don't get back any output, this means your system does not have swap space available currently.
 
 You can verify that there is no active swap using the free utility:
 
-free -h
+    free -h
 Output
               total        used        free      shared  buff/cache   available
 Mem:           488M         36M        104M        652K        348M        426M
