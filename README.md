@@ -1,4 +1,4 @@
-# Ubuntu-16.04---Swap
+# Ubuntu-16.04---MEMORY Swap
 Enabling free memory to use removing out of memory exeption
 
 How To Add Swap Space on Ubuntu 16.04
