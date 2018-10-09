@@ -7,9 +7,18 @@
        sudo su
        echo  0  > /proc/sys/net/ipv4/icmp_echo_ignore_all
        
-To make it permanently, edit the “/etc/sysctl.conf” file so that the setting gets picked up at boot time.
+To make it permanently:
 
-        net.ipv4.icmp_echo_ignore_all=1
+        crontab -e 
+        
+then add the following line:
+
+        @reboot echo "1" > /proc/sys/net/ipv4/icmp_echo_ignore_all
+        
+Start and enable the service:
+
+        systemctl start cron.service
+        systemctl enable cron.service
 
 # Ubuntu-16.04---MEMORY Swap
 Enabling free memory to use removing out of memory exeption
