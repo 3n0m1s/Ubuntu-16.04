@@ -1,3 +1,16 @@
+# Ubuntu-16.04---DISABLE/ENABLE ICMP PING RESPONSE
+                #DISABLE
+       sudo su
+       echo  1  > /proc/sys/net/ipv4/icmp_echo_ignore_all
+       
+                #ENABLE
+       sudo su
+       echo  0  > /proc/sys/net/ipv4/icmp_echo_ignore_all
+       
+To make it permanently, edit the “/etc/sysctl.conf” file so that the setting gets picked up at boot time.
+
+        net.ipv4.icmp_echo_ignore_all=1
+
 # Ubuntu-16.04---MEMORY Swap
 Enabling free memory to use removing out of memory exeption
 
